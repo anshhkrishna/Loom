@@ -24,7 +24,7 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
         <h1 className="modal-title">infinite canvas</h1>
         <p className="modal-description">
           thoughts rarely arrive in order. drop them here, and the canvas
-          quietly finds how they connect.
+          finds how they connect.
         </p>
 
         <div className="modal-divider" />
