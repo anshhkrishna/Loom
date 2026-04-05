@@ -1,6 +1,6 @@
-# Infinite Canvas
+# Loom
 
-Thoughts rarely arrive in order. Infinite Canvas gives you space to scatter them, and surfaces how they connect.
+Thoughts rarely arrive in order. Loom gives you space to scatter them, and surfaces how they connect.
 
 Click anywhere to start. The more you add, the more structure emerges on its own.
 
