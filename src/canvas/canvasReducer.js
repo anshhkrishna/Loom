@@ -85,6 +85,9 @@ export function canvasReducer(state, { type, payload }) {
       }
     }
 
+    case 'CLEAR_SMART_EDGES':
+      return { ...state, edges: state.edges.filter(e => !e.data?.score) }
+
     case 'NODES_CHANGE':
       return { ...state, nodes: applyNodeChanges(payload.changes, state.nodes) }
 

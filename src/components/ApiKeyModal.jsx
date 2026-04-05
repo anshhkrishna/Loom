@@ -7,7 +7,7 @@ const PROVIDER_LABELS = {
   gemini: 'gemini',
 }
 
-export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
+export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey, threshold, onThresholdChange }) {
   const [value, setValue] = useState(currentKey || '')
   const provider = detectProvider(value.trim())
 
@@ -53,6 +53,28 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
             {hasKey ? 'update key' : 'enable smart connections'}
           </button>
         </form>
+
+        <div className="modal-divider" style={{ marginTop: 20 }} />
+
+        <div className="modal-threshold">
+          <div className="modal-threshold__header">
+            <label className="modal-label">connection sensitivity</label>
+            <span className="modal-threshold__value">{threshold.toFixed(2)}</span>
+          </div>
+          <input
+            className="modal-slider"
+            type="range"
+            min="0.5"
+            max="0.95"
+            step="0.01"
+            value={threshold}
+            onChange={(e) => onThresholdChange(parseFloat(e.target.value))}
+          />
+          <div className="modal-threshold__labels">
+            <span>loose</span>
+            <span>strict</span>
+          </div>
+        </div>
 
         <button className="modal-skip" type="button" onClick={onSkip}>
           {hasKey ? 'cancel' : 'continue without →'}

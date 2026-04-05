@@ -17,6 +17,7 @@ export default function App() {
   const [apiKey, setApiKey] = useState(() => getStoredApiKey())
   const [showModal, setShowModal] = useState(() => !getStoredApiKey())
   const [theme, setTheme] = useState(() => localStorage.getItem('canvas_theme') || 'dark')
+  const [threshold, setThreshold] = useState(() => parseFloat(localStorage.getItem('canvas_threshold') || '0.72'))
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -31,10 +32,15 @@ export default function App() {
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
 
+  const handleThresholdChange = (val) => {
+    setThreshold(val)
+    localStorage.setItem('canvas_threshold', val)
+  }
+
   return (
     <>
       <ReactFlowProvider>
-        <CanvasFlow apiKey={apiKey} theme={theme} />
+        <CanvasFlow apiKey={apiKey} theme={theme} threshold={threshold} />
         <div className="bottom-controls">
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
           <SettingsTrigger hasKey={!!apiKey} onClick={() => setShowModal(true)} />
@@ -45,6 +51,8 @@ export default function App() {
             onSkip={() => setShowModal(false)}
             hasKey={!!apiKey}
             currentKey={apiKey}
+            threshold={threshold}
+            onThresholdChange={handleThresholdChange}
           />
         )}
       </ReactFlowProvider>

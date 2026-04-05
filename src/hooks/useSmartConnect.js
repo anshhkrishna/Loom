@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { fetchEmbedding, cosineSimilarity } from '../lib/embeddings'
 
-const SIMILARITY_THRESHOLD = 0.72
 const DEBOUNCE_MS = 1000
 
-export function useSmartConnect(nodes, embeddings, dispatch, apiKey) {
+export function useSmartConnect(nodes, embeddings, dispatch, apiKey, threshold) {
   const timers = useRef({})
   const embeddingsRef = useRef(embeddings)
 
@@ -12,6 +11,24 @@ export function useSmartConnect(nodes, embeddings, dispatch, apiKey) {
     embeddingsRef.current = embeddings
   }, [embeddings])
 
+  // Rebuild all smart edges when threshold changes
+  useEffect(() => {
+    dispatch({ type: 'CLEAR_SMART_EDGES' })
+    const ids = [...embeddingsRef.current.keys()]
+    for (let i = 0; i < ids.length; i++) {
+      for (let j = i + 1; j < ids.length; j++) {
+        const score = cosineSimilarity(
+          embeddingsRef.current.get(ids[i]),
+          embeddingsRef.current.get(ids[j])
+        )
+        if (score >= threshold) {
+          dispatch({ type: 'ADD_SMART_EDGE', payload: { source: ids[i], target: ids[j], score } })
+        }
+      }
+    }
+  }, [threshold, dispatch])
+
+  // Embed new committed nodes and connect to similar existing ones
   useEffect(() => {
     if (!apiKey) return
 
@@ -30,11 +47,8 @@ export function useSmartConnect(nodes, embeddings, dispatch, apiKey) {
           embeddingsRef.current.forEach((otherVector, otherId) => {
             if (otherId === node.id) return
             const score = cosineSimilarity(vector, otherVector)
-            if (score >= SIMILARITY_THRESHOLD) {
-              dispatch({
-                type: 'ADD_SMART_EDGE',
-                payload: { source: node.id, target: otherId, score },
-              })
+            if (score >= threshold) {
+              dispatch({ type: 'ADD_SMART_EDGE', payload: { source: node.id, target: otherId, score } })
             }
           })
         } catch (err) {
@@ -46,5 +60,5 @@ export function useSmartConnect(nodes, embeddings, dispatch, apiKey) {
     return () => {
       Object.values(timers.current).forEach(clearTimeout)
     }
-  }, [nodes, dispatch, apiKey])
+  }, [nodes, dispatch, apiKey, threshold])
 }

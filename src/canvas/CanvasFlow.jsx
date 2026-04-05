@@ -31,7 +31,7 @@ function HintOverlay({ nodeCount, edgeCount }) {
   )
 }
 
-export function CanvasFlow({ apiKey, theme }) {
+export function CanvasFlow({ apiKey, theme, threshold }) {
   const [state, dispatch] = useReducer(canvasReducer, initialState)
   const { nodes, edges, embeddings } = state
 
@@ -49,7 +49,7 @@ export function CanvasFlow({ apiKey, theme }) {
   )
 
   useDeleteNode(nodes, dispatch)
-  useSmartConnect(nodes, embeddings, dispatch, apiKey)
+  useSmartConnect(nodes, embeddings, dispatch, apiKey, threshold)
 
   return (
     <CanvasDispatchContext.Provider value={dispatch}>
