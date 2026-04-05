@@ -1,18 +1,20 @@
 import { useState } from 'react'
+import { detectProvider } from '../lib/embeddings'
 import './ApiKeyModal.css'
+
+const PROVIDER_LABELS = {
+  openai: 'OpenAI',
+  gemini: 'Gemini',
+}
 
 export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
   const [value, setValue] = useState(currentKey || '')
-  const [error, setError] = useState('')
+  const provider = detectProvider(value.trim())
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const trimmed = value.trim()
-    if (!trimmed) return
-    if (!trimmed.startsWith('sk-')) {
-      setError('Should start with sk-')
-      return
-    }
+    if (!trimmed || !provider) return
     onSave(trimmed)
   }
 
@@ -21,26 +23,33 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
       <div className="modal-card">
         <h1 className="modal-title">Infinite Canvas</h1>
         <p className="modal-description">
-          A thinking surface that quietly reveals how your ideas connect.
-          Add your OpenAI key to enable semantic connections.
+          Thoughts rarely arrive in order. Drop them here — the canvas
+          quietly finds how they connect.
         </p>
 
         <div className="modal-divider" />
 
         <form onSubmit={handleSubmit}>
-          <label className="modal-label">OpenAI API key</label>
+          <div className="modal-label-row">
+            <label className="modal-label">API key</label>
+            {provider && (
+              <span className="modal-provider-badge">{PROVIDER_LABELS[provider]}</span>
+            )}
+          </div>
           <input
             className="modal-input"
             type="password"
-            placeholder="sk-..."
+            placeholder="sk-... or AIzaSy..."
             value={value}
-            onChange={(e) => { setValue(e.target.value); setError('') }}
+            onChange={(e) => setValue(e.target.value)}
             autoFocus
             spellCheck={false}
             autoComplete="off"
           />
-          {error && <p className="modal-error">{error}</p>}
-          <button className="modal-button" type="submit" disabled={!value.trim()}>
+          <p className="modal-hint">
+            Supports OpenAI and Gemini keys.
+          </p>
+          <button className="modal-button" type="submit" disabled={!provider}>
             {hasKey ? 'Update key' : 'Enable smart connections'}
           </button>
         </form>

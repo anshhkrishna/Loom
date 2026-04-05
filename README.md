@@ -1,8 +1,8 @@
 # Infinite Canvas
 
-A minimal thinking surface where ideas connect by meaning.
+Thoughts rarely arrive in order. Infinite Canvas gives you space to scatter them — and quietly surfaces how they connect.
 
-Click anywhere to create a thought. As you add more, the canvas quietly draws connections between semantically related ideas — no manual linking needed.
+Click anywhere to start. The more you add, the more structure emerges on its own.
 
 ## How it works
 
@@ -13,7 +13,9 @@ Click anywhere to create a thought. As you add more, the canvas quietly draws co
 - **Scroll** to zoom, **drag background** to pan
 - **Backspace / Delete** to remove a selected node
 
-Smart connections are powered by OpenAI embeddings (`text-embedding-3-small`). When you save a thought, it's embedded and compared against all existing nodes via cosine similarity. If the score exceeds a threshold, an edge appears — brighter and thicker for stronger matches.
+Smart connections are powered by embeddings. When you save a thought, it's embedded and compared against all existing nodes via cosine similarity. If the score exceeds a threshold, an edge appears — brighter and thicker for stronger matches.
+
+Supported providers: **OpenAI** (`sk-...`) and **Gemini** (`AIzaSy...`). The app auto-detects which one you're using from the key format.
 
 ## Getting started
 
