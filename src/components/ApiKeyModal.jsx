@@ -21,7 +21,7 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
   return (
     <div className="modal-backdrop" onClick={(e) => e.target === e.currentTarget && onSkip()}>
       <div className="modal-card">
-        <h1 className="modal-title">infinite canvas</h1>
+        <h1 className="modal-title">loom</h1>
         <p className="modal-description">
           thoughts rarely arrive in order. drop them here, and the canvas
           finds how they connect.
