@@ -3,8 +3,8 @@ import { detectProvider } from '../lib/embeddings'
 import './ApiKeyModal.css'
 
 const PROVIDER_LABELS = {
-  openai: 'OpenAI',
-  gemini: 'Gemini',
+  openai: 'openai',
+  gemini: 'gemini',
 }
 
 export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
@@ -21,9 +21,9 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
   return (
     <div className="modal-backdrop" onClick={(e) => e.target === e.currentTarget && onSkip()}>
       <div className="modal-card">
-        <h1 className="modal-title">Infinite Canvas</h1>
+        <h1 className="modal-title">infinite canvas</h1>
         <p className="modal-description">
-          Thoughts rarely arrive in order. Drop them here, and the canvas
+          thoughts rarely arrive in order. drop them here, and the canvas
           quietly finds how they connect.
         </p>
 
@@ -31,7 +31,7 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
 
         <form onSubmit={handleSubmit}>
           <div className="modal-label-row">
-            <label className="modal-label">API key</label>
+            <label className="modal-label">api key</label>
             {provider && (
               <span className="modal-provider-badge">{PROVIDER_LABELS[provider]}</span>
             )}
@@ -47,19 +47,19 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
             autoComplete="off"
           />
           <p className="modal-hint">
-            Supports OpenAI and Gemini keys.
+            supports openai and gemini keys.
           </p>
           <button className="modal-button" type="submit" disabled={!provider}>
-            {hasKey ? 'Update key' : 'Enable smart connections'}
+            {hasKey ? 'update key' : 'enable smart connections'}
           </button>
         </form>
 
         <button className="modal-skip" type="button" onClick={onSkip}>
-          {hasKey ? 'Cancel' : 'Continue without →'}
+          {hasKey ? 'cancel' : 'continue without →'}
         </button>
 
         <p className="modal-privacy">
-          Stored in your browser only. Never sent to any server.
+          stored in your browser only. never sent to any server.
         </p>
       </div>
     </div>
@@ -68,10 +68,10 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey }) {
 
 export function SettingsTrigger({ hasKey, onClick }) {
   return (
-    <button className="settings-trigger" onClick={onClick} title="API settings">
+    <button className="settings-trigger" onClick={onClick} title="api settings">
       <span className={`settings-trigger__dot ${hasKey ? 'settings-trigger__dot--active' : ''}`} />
       <span className="settings-trigger__label">
-        {hasKey ? 'AI on' : 'Add key'}
+        {hasKey ? 'ai on' : 'add key'}
       </span>
     </button>
   )

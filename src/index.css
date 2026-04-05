@@ -9,22 +9,37 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
   background: #0b0b0c;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Times New Roman', Georgia, Times, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Canvas atmosphere ──────────────────────────── */
+
+.canvas-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(ellipse 110% 110% at 50% 50%, transparent 35%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+.canvas-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+}
+
 /* ── ReactFlow overrides ────────────────────────── */
 
-/* Selection box */
 .react-flow__selection {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Remove default node border/shadow from ReactFlow wrapper */
-.react-flow__node {
-  border-radius: 14px;
 }
 
 .react-flow__node.selected > div,
@@ -33,12 +48,10 @@ html, body, #root {
   box-shadow: none;
 }
 
-/* Hide edge labels */
 .react-flow__edge-textwrapper {
   display: none;
 }
 
-/* Pane cursor */
 .react-flow__pane {
   cursor: default;
 }

@@ -65,11 +65,11 @@ export function ThoughtNode({ id, data, selected }) {
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           rows={1}
-          placeholder="Think..."
+          placeholder="think..."
         />
       ) : (
         <div className="thought-node__label">
-          {label || <span className="thought-node__placeholder">Think...</span>}
+          {label || <span className="thought-node__placeholder">think...</span>}
         </div>
       )}
 

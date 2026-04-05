@@ -1,9 +1,5 @@
 import { useReducer, useCallback } from 'react'
-import {
-  ReactFlow,
-  Background,
-  BackgroundVariant,
-} from '@xyflow/react'
+import { ReactFlow } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import './CanvasFlow.css'
 
@@ -26,10 +22,10 @@ function HintOverlay({ nodeCount, edgeCount }) {
   return (
     <div className="hint-overlay">
       <p className={`hint-primary ${showPrimary ? 'hint--visible' : 'hint--hidden'}`}>
-        Click anywhere to start a thought
+        click anywhere to start a thought
       </p>
       <p className={`hint-secondary ${showSecondary ? 'hint--visible' : 'hint--hidden'}`}>
-        Keep adding. Connections will form.
+        keep adding. connections will form.
       </p>
     </div>
   )
@@ -95,14 +91,8 @@ function ReactFlowInner({ nodes, edges, onNodesChange, onEdgesChange, onNodeDoub
       deleteKeyCode={null}
       colorMode="dark"
       proOptions={{ hideAttribution: true }}
+      style={{ background: '#0b0b0c' }}
     >
-      <Background
-        variant={BackgroundVariant.Dots}
-        gap={32}
-        size={1}
-        color="rgba(255,255,255,0.04)"
-        bgColor="#0b0b0c"
-      />
     </ReactFlow>
   )
 }

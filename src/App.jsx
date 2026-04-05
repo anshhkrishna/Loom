@@ -15,17 +15,21 @@ export default function App() {
   }
 
   return (
-    <ReactFlowProvider>
-      <CanvasFlow apiKey={apiKey} />
-      <SettingsTrigger hasKey={!!apiKey} onClick={() => setShowModal(true)} />
-      {showModal && (
-        <ApiKeyModal
-          onSave={handleSaveKey}
-          onSkip={() => setShowModal(false)}
-          hasKey={!!apiKey}
-          currentKey={apiKey}
-        />
-      )}
-    </ReactFlowProvider>
+    <>
+      <ReactFlowProvider>
+        <CanvasFlow apiKey={apiKey} />
+        <SettingsTrigger hasKey={!!apiKey} onClick={() => setShowModal(true)} />
+        {showModal && (
+          <ApiKeyModal
+            onSave={handleSaveKey}
+            onSkip={() => setShowModal(false)}
+            hasKey={!!apiKey}
+            currentKey={apiKey}
+          />
+        )}
+      </ReactFlowProvider>
+      <div className="canvas-vignette" />
+      <div className="canvas-grain" />
+    </>
   )
 }
