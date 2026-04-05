@@ -2,14 +2,14 @@ import { getBezierPath } from '@xyflow/react'
 import './FloatingEdge.css'
 
 const THRESHOLD = 0.72
-const MAX_SCORE = 0.92
+const MAX_SCORE = 0.94
 
 function scoreToStyle(score, selected) {
-  if (selected) return { opacity: 0.55, strokeWidth: 2.0 }
+  if (selected) return { opacity: 0.92, strokeWidth: 3.0 }
   const t = Math.min(Math.max((score - THRESHOLD) / (MAX_SCORE - THRESHOLD), 0), 1)
   return {
-    opacity: 0.07 + t * 0.28,
-    strokeWidth: 0.8 + t * 1.1,
+    opacity: 0.38 + t * 0.45,
+    strokeWidth: 1.5 + t * 1.8,
   }
 }
 
@@ -40,7 +40,7 @@ export function FloatingEdge({
   const { opacity, strokeWidth } = scoreToStyle(score, selected)
 
   return (
-    <g>
+    <g className="floating-edge">
       {/* Wide invisible hit target */}
       <path d={edgePath} fill="none" strokeWidth={20} stroke="transparent" />
       {/* Visible animated edge */}

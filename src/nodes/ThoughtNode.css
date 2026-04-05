@@ -11,6 +11,19 @@
   animation: nodeIn 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+[data-theme="dark"] .thought-node {
+  box-shadow: 0 1px 16px rgba(0, 0, 0, 0.5), 0 0 28px rgba(100, 160, 255, 0.07);
+}
+
+[data-theme="dark"] .thought-node:hover {
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.6), 0 0 40px rgba(100, 160, 255, 0.14);
+}
+
+[data-theme="dark"] .thought-node--selected {
+  border-color: rgba(150, 190, 255, 0.3);
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.6), 0 0 50px rgba(100, 160, 255, 0.22), 0 0 0 1px rgba(150, 190, 255, 0.12);
+}
+
 .thought-node:active {
   cursor: grabbing;
 }

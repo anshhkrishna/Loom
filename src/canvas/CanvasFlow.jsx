@@ -1,5 +1,5 @@
 import { useReducer, useCallback } from 'react'
-import { ReactFlow } from '@xyflow/react'
+import { ReactFlow, MiniMap } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import './CanvasFlow.css'
 
@@ -94,6 +94,13 @@ function ReactFlowInner({ nodes, edges, onNodesChange, onEdgesChange, onNodeDoub
       proOptions={{ hideAttribution: true }}
       style={{ background: 'var(--canvas-bg)', transition: 'background 300ms ease' }}
     >
+      <MiniMap
+        className="canvas-minimap"
+        nodeColor="var(--minimap-node)"
+        maskColor="var(--minimap-mask)"
+        zoomable
+        pannable
+      />
     </ReactFlow>
   )
 }
