@@ -79,6 +79,96 @@
   color: rgba(255, 255, 255, 0.16);
 }
 
+/* Ask feature */
+.thought-node__ask {
+  margin-top: 2px;
+}
+
+.thought-node__ask-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 8px 0 6px;
+}
+
+[data-theme="light"] .thought-node__ask-divider {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.thought-node__ask-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0;
+  cursor: text;
+}
+
+.thought-node__ask-input::placeholder {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.thought-node__ask-input:focus::placeholder {
+  color: rgba(255, 255, 255, 0.14);
+}
+
+.thought-node__ask-input:disabled {
+  cursor: default;
+}
+
+[data-theme="light"] .thought-node__ask-input {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .thought-node__ask-input::placeholder {
+  color: rgba(0, 0, 0, 0.22);
+}
+
+.thought-node__response {
+  position: relative;
+  margin-bottom: 6px;
+  padding: 7px 24px 7px 0;
+}
+
+.thought-node__response p {
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.65);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+[data-theme="light"] .thought-node__response p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.thought-node__response-close {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.thought-node__response-close:hover {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+[data-theme="light"] .thought-node__response-close {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .thought-node__response-close:hover {
+  color: rgba(0, 0, 0, 0.55);
+}
+
 /* Handles: fully hidden, connections are semantic */
 .thought-node .react-flow__handle {
   width: 5px;

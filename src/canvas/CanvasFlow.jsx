@@ -1,10 +1,10 @@
 import { useReducer, useCallback } from 'react'
-import { ReactFlow, MiniMap } from '@xyflow/react'
+import { ReactFlow } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import './CanvasFlow.css'
 
 import { canvasReducer, initialState } from './canvasReducer'
-import { CanvasDispatchContext } from './canvasContext'
+import { CanvasDispatchContext, CanvasStateContext } from './canvasContext'
 import { ThoughtNode } from '../nodes/ThoughtNode'
 import { FloatingEdge } from '../edges/FloatingEdge'
 import { useClickToCreate } from '../hooks/useClickToCreate'
@@ -52,20 +52,22 @@ export function CanvasFlow({ apiKey, theme, threshold }) {
   useSmartConnect(nodes, embeddings, dispatch, apiKey, threshold)
 
   return (
-    <CanvasDispatchContext.Provider value={dispatch}>
-      <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
-        <HintOverlay nodeCount={nodes.length} edgeCount={edges.length} />
-        <ReactFlowInner
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onNodeDoubleClick={onNodeDoubleClick}
-          dispatch={dispatch}
-          theme={theme}
-        />
-      </div>
-    </CanvasDispatchContext.Provider>
+    <CanvasStateContext.Provider value={{ nodes, edges, apiKey }}>
+      <CanvasDispatchContext.Provider value={dispatch}>
+        <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+          <HintOverlay nodeCount={nodes.length} edgeCount={edges.length} />
+          <ReactFlowInner
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onNodeDoubleClick={onNodeDoubleClick}
+            dispatch={dispatch}
+            theme={theme}
+          />
+        </div>
+      </CanvasDispatchContext.Provider>
+    </CanvasStateContext.Provider>
   )
 }
 
@@ -94,13 +96,6 @@ function ReactFlowInner({ nodes, edges, onNodesChange, onEdgesChange, onNodeDoub
       proOptions={{ hideAttribution: true }}
       style={{ background: 'var(--canvas-bg)', transition: 'background 300ms ease' }}
     >
-      <MiniMap
-        className="canvas-minimap"
-        nodeColor="var(--minimap-node)"
-        maskColor="var(--minimap-mask)"
-        zoomable
-        pannable
-      />
     </ReactFlow>
   )
 }

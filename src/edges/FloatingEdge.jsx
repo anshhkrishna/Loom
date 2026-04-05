@@ -5,11 +5,11 @@ const THRESHOLD = 0.72
 const MAX_SCORE = 0.94
 
 function scoreToStyle(score, selected) {
-  if (selected) return { opacity: 0.92, strokeWidth: 3.0 }
+  if (selected) return { opacity: 0.95, strokeWidth: 3.0 }
   const t = Math.min(Math.max((score - THRESHOLD) / (MAX_SCORE - THRESHOLD), 0), 1)
   return {
-    opacity: 0.38 + t * 0.45,
-    strokeWidth: 1.5 + t * 1.8,
+    opacity: 0.08 + t * 0.82,
+    strokeWidth: 0.8 + t * 2.4,
   }
 }
 
