@@ -1,6 +1,6 @@
 # Infinite Canvas
 
-Thoughts rarely arrive in order. Infinite Canvas gives you space to scatter them — and quietly surfaces how they connect.
+Thoughts rarely arrive in order. Infinite Canvas gives you space to scatter them, and quietly surfaces how they connect.
 
 Click anywhere to start. The more you add, the more structure emerges on its own.
 
@@ -13,7 +13,7 @@ Click anywhere to start. The more you add, the more structure emerges on its own
 - **Scroll** to zoom, **drag background** to pan
 - **Backspace / Delete** to remove a selected node
 
-Smart connections are powered by embeddings. When you save a thought, it's embedded and compared against all existing nodes via cosine similarity. If the score exceeds a threshold, an edge appears — brighter and thicker for stronger matches.
+Smart connections are powered by embeddings. When you save a thought, it's embedded and compared against all existing nodes via cosine similarity. If the score exceeds a threshold, an edge appears, brighter and thicker for stronger matches.
 
 Supported providers: **OpenAI** (`sk-...`) and **Gemini** (`AIzaSy...`). The app auto-detects which one you're using from the key format.
 
