@@ -1,0 +1,40 @@
+.hint-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hint-primary {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.22);
+  letter-spacing: 0.02em;
+  user-select: none;
+  transition: opacity 700ms ease;
+}
+
+.hint-secondary {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  user-select: none;
+  transition: opacity 700ms ease;
+}
+
+.hint--visible {
+  opacity: 1;
+}
+
+.hint--hidden {
+  opacity: 0;
+}

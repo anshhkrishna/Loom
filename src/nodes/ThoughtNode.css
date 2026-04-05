@@ -1,0 +1,81 @@
+.thought-node {
+  background: #131315;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 12px 16px;
+  min-width: 100px;
+  max-width: 300px;
+  box-shadow: 0 1px 16px rgba(0, 0, 0, 0.35);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  cursor: grab;
+  animation: nodeIn 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.thought-node:active {
+  cursor: grabbing;
+}
+
+.thought-node--exiting {
+  animation: nodeOut 150ms ease-in forwards;
+  pointer-events: none;
+}
+
+.thought-node:hover {
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.45);
+}
+
+.thought-node--selected {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.thought-node__textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  width: 100%;
+  min-width: 80px;
+  padding: 0;
+  display: block;
+  cursor: text;
+}
+
+.thought-node__textarea::placeholder {
+  color: rgba(255, 255, 255, 0.16);
+}
+
+.thought-node__label {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-width: 80px;
+}
+
+.thought-node__placeholder {
+  color: rgba(255, 255, 255, 0.16);
+}
+
+/* Handles — fully hidden, connections are semantic */
+.thought-node .react-flow__handle {
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.thought-node--selected .react-flow__handle {
+  opacity: 0.5;
+}

@@ -1,0 +1,5 @@
+.floating-edge__path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: edgeIn 300ms ease-out forwards;
+}
