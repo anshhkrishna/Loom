@@ -49,7 +49,7 @@ export function FloatingEdge({
         d={edgePath}
         fill="none"
         pathLength="1"
-        stroke="rgba(255,255,255,1)"
+        stroke="var(--edge-color)"
         strokeWidth={strokeWidth}
         opacity={opacity}
         className="floating-edge__path"

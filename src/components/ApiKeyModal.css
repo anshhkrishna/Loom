@@ -169,10 +169,6 @@
 
 /* Settings trigger button */
 .settings-trigger {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 100;
   background: none;
   border: none;
   cursor: pointer;

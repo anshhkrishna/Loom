@@ -31,7 +31,7 @@ function HintOverlay({ nodeCount, edgeCount }) {
   )
 }
 
-export function CanvasFlow({ apiKey }) {
+export function CanvasFlow({ apiKey, theme }) {
   const [state, dispatch] = useReducer(canvasReducer, initialState)
   const { nodes, edges, embeddings } = state
 
@@ -62,13 +62,14 @@ export function CanvasFlow({ apiKey }) {
           onEdgesChange={onEdgesChange}
           onNodeDoubleClick={onNodeDoubleClick}
           dispatch={dispatch}
+          theme={theme}
         />
       </div>
     </CanvasDispatchContext.Provider>
   )
 }
 
-function ReactFlowInner({ nodes, edges, onNodesChange, onEdgesChange, onNodeDoubleClick, dispatch }) {
+function ReactFlowInner({ nodes, edges, onNodesChange, onEdgesChange, onNodeDoubleClick, dispatch, theme }) {
   const handlePaneClick = useClickToCreate(dispatch)
 
   return (
@@ -89,9 +90,9 @@ function ReactFlowInner({ nodes, edges, onNodesChange, onEdgesChange, onNodeDoub
       zoomOnDoubleClick={false}
       selectionOnDrag={false}
       deleteKeyCode={null}
-      colorMode="dark"
+      colorMode={theme}
       proOptions={{ hideAttribution: true }}
-      style={{ background: '#0b0b0c' }}
+      style={{ background: 'var(--canvas-bg)', transition: 'background 300ms ease' }}
     >
     </ReactFlow>
   )
