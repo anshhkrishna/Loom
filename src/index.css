@@ -42,22 +42,39 @@ html, body, #root {
   inset: 0;
   pointer-events: none;
   z-index: 3;
-  opacity: 0.022;
+  opacity: var(--grain-opacity, 0.04);
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>");
   background-repeat: repeat;
   background-size: 300px 300px;
 }
 
-/* ── Bottom controls ────────────────────────────── */
+/* ── Corner controls ────────────────────────────── */
 
-.bottom-controls {
+.controls-br {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 100;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+}
+
+.controls-bl {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.controls-tr {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 100;
 }
 
 .theme-toggle {
@@ -223,6 +240,123 @@ html, body, #root {
 
 [data-theme="light"] .modal-backdrop {
   background: rgba(245, 244, 240, 0.8);
+}
+
+/* ── Appearance trigger ─────────────────────────── */
+
+.appearance-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  opacity: 0.4;
+  transition: opacity 200ms ease;
+  font-family: inherit;
+}
+
+.appearance-trigger:hover {
+  opacity: 0.8;
+}
+
+.appearance-trigger__swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+  display: block;
+}
+
+[data-theme="light"] .appearance-trigger__swatch {
+  border-color: rgba(0, 0, 0, 0.28);
+}
+
+.appearance-trigger__label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+}
+
+[data-theme="light"] .appearance-trigger__label {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ── New cluster button ─────────────────────────── */
+
+.new-cluster-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  opacity: 0.4;
+  transition: opacity 200ms ease;
+  font-family: inherit;
+}
+
+.new-cluster-btn:hover {
+  opacity: 0.8;
+}
+
+.new-cluster-btn__icon {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1;
+}
+
+.new-cluster-btn__label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+}
+
+[data-theme="light"] .new-cluster-btn__icon,
+[data-theme="light"] .new-cluster-btn__label {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Chat trigger ───────────────────────────────── */
+
+.chat-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  opacity: 0.3;
+  transition: opacity 200ms ease;
+  font-family: inherit;
+}
+
+.chat-trigger:hover {
+  opacity: 0.7;
+}
+
+.chat-trigger__icon {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1;
+}
+
+.chat-trigger__label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+}
+
+[data-theme="light"] .chat-trigger__icon,
+[data-theme="light"] .chat-trigger__label {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /* ── Light mode: settings trigger ──────────────── */

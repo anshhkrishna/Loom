@@ -4,12 +4,11 @@ import './FloatingEdge.css'
 const THRESHOLD = 0.72
 const MAX_SCORE = 0.94
 
-function scoreToStyle(score, selected) {
-  if (selected) return { opacity: 0.95, strokeWidth: 3.0 }
+function scoreToStyle(score) {
   const t = Math.min(Math.max((score - THRESHOLD) / (MAX_SCORE - THRESHOLD), 0), 1)
   return {
-    opacity: 0.08 + t * 0.82,
-    strokeWidth: 0.8 + t * 2.4,
+    opacity: 0.08 + t * 0.72,
+    strokeWidth: 0.8 + t * 2.0,
   }
 }
 
@@ -33,17 +32,28 @@ export function FloatingEdge({
     targetX,
     targetY,
     targetPosition,
-    curvature: 0.3,
+    curvature: 0.25,
   })
 
+  const isChain = data?.isChain
   const score = data?.score ?? THRESHOLD
-  const { opacity, strokeWidth } = scoreToStyle(score, selected)
+
+  let opacity, strokeWidth
+  if (selected) {
+    opacity = 0.9
+    strokeWidth = 2.5
+  } else if (isChain) {
+    opacity = 0.35
+    strokeWidth = 1.2
+  } else {
+    const s = scoreToStyle(score)
+    opacity = s.opacity
+    strokeWidth = s.strokeWidth
+  }
 
   return (
-    <g className="floating-edge">
-      {/* Wide invisible hit target */}
+    <g className={`floating-edge ${isChain ? 'floating-edge--chain' : ''}`}>
       <path d={edgePath} fill="none" strokeWidth={20} stroke="transparent" />
-      {/* Visible animated edge */}
       <path
         id={id}
         d={edgePath}

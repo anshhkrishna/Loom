@@ -5,7 +5,7 @@ import { askAboutNode } from '../lib/ask'
 import './ThoughtNode.css'
 
 export function ThoughtNode({ id, data, selected }) {
-  const { label, isEditing, isExiting } = data
+  const { label, isEditing, isExiting, isHighlighted } = data
   const dispatch = useCanvasDispatch()
   const { nodes, edges, apiKey } = useCanvasState()
   const textareaRef = useRef(null)
@@ -82,6 +82,7 @@ export function ThoughtNode({ id, data, selected }) {
     'thought-node',
     isExiting ? 'thought-node--exiting' : '',
     selected ? 'thought-node--selected' : '',
+    isHighlighted ? 'thought-node--highlighted' : '',
   ].filter(Boolean).join(' ')
 
   const showAsk = !isEditing && !!label && !!apiKey

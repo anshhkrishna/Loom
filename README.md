@@ -1,40 +1,38 @@
-# Loom
+# loom
 
-Thoughts rarely arrive in order. Loom gives you space to scatter them, and surfaces how they connect.
+think in threads.
 
-Click anywhere to start. The more you add, the more structure emerges on its own.
+An infinite canvas for thinking. Create named clusters, chain thoughts sequentially within them, and watch semantic connections form across clusters automatically.
 
-## How it works
+## what it does
 
-- **Click** anywhere on the canvas to create a node and start typing
-- **Enter** to save a thought
-- **Double-click** a node to edit it
-- **Drag** nodes to rearrange
-- **Scroll** to zoom, **drag background** to pan
-- **Backspace / Delete** to remove a selected node
+- **Clusters** — named workspaces. Each cluster holds a chain of thoughts. New thoughts auto-connect to the previous one in sequence.
+- **Smart connections** — when you save a thought, it's embedded and compared against all other nodes via cosine similarity. Matching thoughts across clusters connect automatically.
+- **Chat** — ask questions about your canvas. The AI references specific nodes by number and cites them inline. Click a citation to jump to that node.
+- **Appearance** — light and dark mode, custom background color, grain/texture control.
 
-Smart connections are powered by embeddings. When you save a thought, it's embedded and compared against all existing nodes via cosine similarity. If the score exceeds a threshold, an edge appears, brighter and thicker for stronger matches.
-
-Supported providers: **OpenAI** (`sk-...`) and **Gemini** (`AIzaSy...`). The app auto-detects which one you're using from the key format.
-
-## Getting started
+## getting started
 
 ```bash
 npm install
 npm run dev
 ```
 
-On first load you'll be prompted for your OpenAI API key. It's stored in your browser only and never sent anywhere else.
+On first load you'll be prompted for an API key. Stored in your browser only, never sent anywhere else.
 
-To use an environment variable instead:
+## supported providers
 
-```bash
-cp .env.example .env
-# fill in your key
-```
+| Provider | Chat | Smart connections |
+|---|---|---|
+| OpenAI (`sk-...`) | ✓ | ✓ |
+| Gemini (`AIza...`) | ✓ | ✓ |
+| Anthropic (`sk-ant-...`) | ✓ | — |
 
-## Stack
+Anthropic does not have an embeddings API, so smart connections are unavailable with Anthropic keys.
+
+## stack
 
 - React 19 + Vite
 - [@xyflow/react](https://reactflow.dev) for canvas rendering
-- OpenAI `text-embedding-3-small` for semantic similarity
+- OpenAI `text-embedding-3-small` / Gemini `text-embedding-004` for semantic similarity
+- OpenAI `gpt-4o-mini` / Gemini `gemini-1.5-flash` / Anthropic `claude-haiku-4-5` for chat

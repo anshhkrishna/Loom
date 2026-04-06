@@ -1,0 +1,156 @@
+.landing {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: #0b0b0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: landingIn 600ms ease both;
+}
+
+@keyframes landingIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.landing--exit {
+  animation: landingOut 480ms ease forwards;
+}
+
+@keyframes landingOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Grain overlay — same texture as the main canvas */
+.landing::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 260px;
+}
+
+/* Wordmark — same weight/tracking family as the UI, just larger */
+.landing-wordmark {
+  font-size: 38px;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1;
+  margin: 0 0 8px 0;
+}
+
+.landing-tagline {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.28);
+  letter-spacing: 0.04em;
+  margin: 0 0 32px 0;
+}
+
+/* Input — matches .modal-input exactly */
+.landing-input-wrap {
+  position: relative;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.landing-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 11px;
+  font-family: inherit;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.landing-input:focus {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.landing-input::placeholder {
+  color: rgba(255, 255, 255, 0.20);
+}
+
+.landing-provider {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: rgba(134, 239, 172, 0.75);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* Button — matches .modal-button exactly */
+.landing-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0b0b0c;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 150ms ease, opacity 150ms ease;
+}
+
+.landing-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 1);
+}
+
+.landing-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Skip — matches .modal-skip */
+.landing-skip {
+  display: block;
+  margin: 16px auto 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 150ms ease;
+}
+
+.landing-skip:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Hint — matches .modal-privacy */
+.landing-hint {
+  margin-top: 20px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}

@@ -4,6 +4,6 @@
   animation: edgeIn 300ms ease-out forwards;
 }
 
-[data-theme="dark"] .floating-edge {
-  filter: drop-shadow(0 0 5px rgba(160, 200, 255, 0.4));
+[data-theme="dark"] .floating-edge:not(.floating-edge--chain) {
+  filter: drop-shadow(0 0 4px rgba(160, 200, 255, 0.3));
 }

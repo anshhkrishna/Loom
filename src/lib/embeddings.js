@@ -2,6 +2,7 @@ import OpenAI from 'openai'
 
 export function detectProvider(key) {
   if (!key) return null
+  if (key.startsWith('sk-ant-')) return 'anthropic'
   if (key.startsWith('sk-')) return 'openai'
   if (key.startsWith('AIza')) return 'gemini'
   return null
@@ -38,6 +39,7 @@ export async function fetchEmbedding(text, apiKey) {
   const provider = detectProvider(apiKey)
   if (provider === 'openai') return openaiEmbedding(text.trim(), apiKey)
   if (provider === 'gemini') return geminiEmbedding(text.trim(), apiKey)
+  if (provider === 'anthropic') return null // no embeddings API — smart connections unavailable
   throw new Error('Unrecognized API key format')
 }
 

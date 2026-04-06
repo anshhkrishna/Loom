@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { detectProvider } from '../lib/embeddings'
 import './ApiKeyModal.css'
 
-const PROVIDER_LABELS = {
-  openai: 'openai',
-  gemini: 'gemini',
-}
+const PROVIDER_LABELS = { openai: 'openai', gemini: 'gemini' }
 
-export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey, threshold, onThresholdChange }) {
+export function ApiKeyModal({
+  onSave, onSkip, hasKey, currentKey,
+  threshold, onThresholdChange,
+}) {
   const [value, setValue] = useState(currentKey || '')
   const provider = detectProvider(value.trim())
 
@@ -46,9 +46,7 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey, threshold, onT
             spellCheck={false}
             autoComplete="off"
           />
-          <p className="modal-hint">
-            supports openai and gemini keys.
-          </p>
+          <p className="modal-hint">supports openai and gemini keys.</p>
           <button className="modal-button" type="submit" disabled={!provider}>
             {hasKey ? 'update key' : 'enable smart connections'}
           </button>
@@ -90,10 +88,10 @@ export function ApiKeyModal({ onSave, onSkip, hasKey, currentKey, threshold, onT
 
 export function SettingsTrigger({ hasKey, onClick }) {
   return (
-    <button className="settings-trigger" onClick={onClick} title="api settings">
+    <button className="settings-trigger" onClick={onClick} title="settings">
       <span className={`settings-trigger__dot ${hasKey ? 'settings-trigger__dot--active' : ''}`} />
       <span className="settings-trigger__label">
-        {hasKey ? 'ai on' : 'add key'}
+        {hasKey ? 'linked' : 'add key'}
       </span>
     </button>
   )

@@ -169,6 +169,17 @@
   color: rgba(0, 0, 0, 0.55);
 }
 
+@keyframes highlightPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(100, 160, 255, 0.5); }
+  50%  { box-shadow: 0 0 0 8px rgba(100, 160, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(100, 160, 255, 0); }
+}
+
+.thought-node--highlighted {
+  animation: highlightPulse 1.6s ease-out 2;
+  border-color: rgba(100, 160, 255, 0.4) !important;
+}
+
 /* Handles: fully hidden, connections are semantic */
 .thought-node .react-flow__handle {
   width: 5px;
